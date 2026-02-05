@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Fullstack AI Lab</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .signup-container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
+        h2 { text-align: center; color: #333; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .flash-messages { color: #d9534f; list-style: none; padding: 0; font-size: 0.9rem; margin-bottom: 10px; }
+        .login-link { text-align: center; display: block; margin-top: 15px; font-size: 0.8rem; color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h2>Create Account</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('signup') }}" method="POST">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter email" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Create password" required>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <a href="{{ url_for('login') }}" class="login-link">Already have an account? Login here</a>
+</div>
+
+</body>
+</html>
